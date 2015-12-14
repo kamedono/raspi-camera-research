@@ -20,7 +20,7 @@ int main(void) {
         struct xbee_conAddress address;
 
         /* setup libxbee, using a Series 1 XBee, on /dev/ttyUSB0, at 57600 baud */
-        xbee_setup(&xbee, "xbee1", "/dev/ttyUSB0", 57600);
+        xbee_setup(&xbee, "xbee1", "/dev/ttyUSB0", 9800);
 
         /* setup a 64-bit address */
         memset(&address, 0, sizeof(address));
