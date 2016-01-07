@@ -3,6 +3,7 @@
 #include <string.h>
 
 #include <xbee.h>
+#include <unistd.h>
 
 void myCB(struct xbee *xbee, struct xbee_con *con, struct xbee_pkt **pkt, void **data) {
         if ((*pkt)->dataLen <= 0) return;
