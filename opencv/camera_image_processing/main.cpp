@@ -27,8 +27,6 @@ int main(int argc, char **argv){
         IplImage *frame_left = 0;
         IplImage *frame_right = 0;
 
-        const char *winName = "Stereo Correspondence";
-
         double width = 320, height = 240;
 
         // カメラに対するキャプチャ構造体を作成
@@ -57,8 +55,8 @@ int main(int argc, char **argv){
                 // if(c == '\x1b') break;
                 //sleep(2);
 
-                left.SetIpl(cvLoadImage(frame_left, 0)); // 入力画像：左
-                right.SetIpl(cvLoadImage(frame_right, 0)); // 入力画像：右
+                left.SetIpl(frame_left); // 入力画像：左
+                right.SetIpl(frame_right); // 入力画像：右
 
                 // 領域確保
                 size = cvGetSize(left.Ipl());
