@@ -12,8 +12,7 @@
 
 #include <opencv/highgui.h>
 
-int main(int argc, char **argv)
-{
+int main(int argc, char **argv){
         CvCapture *capture = 0;
         IplImage *frame = 0;
         int c;
