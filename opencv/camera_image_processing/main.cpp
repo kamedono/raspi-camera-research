@@ -20,12 +20,14 @@ int main(int argc, char **argv){
         cv::WImageBuffer1_16s dispLeft, dispRight; // 符号付き16ビット, 1チャンネル
         CvStereoGCState *state = cvCreateStereoGCState(16, 2); //距離計測(GC版)用 構造体
         CvSize size;
-        const char *winName = "Stereo Correspondence";
 
-        // キャプチャ
-        CvCapture *capture = 0;
-        IplImage *frame = 0;
-        int c;
+        // init
+        CvCapture *captuer_left = 0;
+        CvCapture *captuer_right = 0;
+        IplImage *frame_left = 0;
+        IplImage *frame_right = 0;
+
+        const char *winName = "Stereo Correspondence";
 
         double width = 320, height = 240;
 
