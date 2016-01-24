@@ -13,7 +13,7 @@
 #include <cvwimage.h>
 #include <legacy.hpp>
 
-#include <opencv/highgui.h>
+#include <highgui.h>
 
 int main(int argc, char **argv){
         cv::WImageBuffer1_b left, right, dst; // 符号なし8ビット, 1チャンネル

@@ -1,52 +1,42 @@
 /*
-   http://junkroom2cyberrobotics.blogspot.jp/2012/10/raspberry-pi-opencv.html
-   参考にさせていただきました。
+    http://opencv.jp/sample/simple_gui.html
+    参考にさせていただきました。
  */
 
 // OpenCV カメラ画像取得テスト。
-#include <stdio.h>
+#include <cv.h>
+#include <highgui.h>
 #include <ctype.h>
-#include <time.h>
-#include <sys/time.h>
-#include <unistd.h>
+#include <videoio.hpp>
 
-#include <opencv/highgui.h>
-
-int main(int argc, char **argv){
+int main (int argc, char **argv) {
         CvCapture *capture = 0;
         IplImage *frame = 0;
+        double w = 320, h = 240;
         int c;
 
-        double width = 320, height = 240;
+        // (1)コマンド引数によって指定された番号のカメラに対するキャプチャ構造体を作成する
+        if (argc == 1 || (argc == 2 && strlen (argv[1]) == 1 && isdigit (argv[1][0])))
+                capture = cvCreateCameraCapture (argc == 2 ? argv[1][0] - '0' : 0);
 
-        // カメラに対するキャプチャ構造体を作成。
-        if (argc == 1 || (argc == 2 && strlen(argv[1]) == 1 && isdigit(argv[1][0])))
-                capture = cvCreateCameraCapture(argc == 2 ? argv[1][0] - '0' : 0);
+        /* この設定は，利用するカメラに依存する */
+        // (2)キャプチャサイズを設定する．
+        cvSetCaptureProperty (capture, CV_CAP_PROP_FRAME_WIDTH, w);
+        cvSetCaptureProperty (capture, CV_CAP_PROP_FRAME_HEIGHT, h);
 
-        // キャプチャサイズの設定。
-        cvSetCaptureProperty(capture, CV_CAP_PROP_FRAME_WIDTH, width);
-        cvSetCaptureProperty(capture, CV_CAP_PROP_FRAME_HEIGHT, height);
+        cvNamedWindow ("Capture", CV_WINDOW_AUTOSIZE);
 
-        // ウィンドウ作成。
-        cvNamedWindow("Capture", CV_WINDOW_AUTOSIZE);
-
-        while(1)
-        {
-                // 画像キャプチャ。
-                frame = cvQueryFrame(capture);
-                cvShowImage("Capture", frame);
-
-                c = cvWaitKey(2);
-                if(c == '\x1b') break;
-                //sleep(2);
-
-                // todo
-                // zigbeeの処理を追加
+        // (3)カメラから画像をキャプチャする
+        while (1) {
+                frame = cvQueryFrame (capture);
+                cvShowImage ("Capture", frame);
+                c = cvWaitKey (2);
+                if (c == '\x1b')
+                        break;
         }
 
-        // 後片付け。
-        cvReleaseCapture(&capture);
-        cvDestroyWindow("Capture");
+        cvReleaseCapture (&capture);
+        cvDestroyWindow ("Capture");
 
         return 0;
 }
