@@ -11,8 +11,9 @@
 
 #include <cv.h>
 #include <cvwimage.h>
-#include <legacy.hpp>
+// #include <legacy.hpp>
 
+#include <videoio.hpp>
 #include <highgui.h>
 
 int main(int argc, char **argv){
