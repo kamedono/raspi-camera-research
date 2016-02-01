@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 #
-#    ttp://coniglio.hateblo.jp/entry/20130308
+#    http://coniglio.hateblo.jp/entry/20130308
 #    参考にさせていただきました。
 #
 
